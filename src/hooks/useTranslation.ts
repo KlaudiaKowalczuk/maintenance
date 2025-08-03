@@ -9,10 +9,10 @@ const translations = {
 
 type TranslationKey = keyof typeof translations;
 
-export function useTranslation(language?: string) {
+export function useTranslation() {
   const appConfig = useAppConfig();
   const configLanguage = appConfig?.configs.language;
-  const currentLanguage = (language || configLanguage || 'en-GB') as TranslationKey;
+  const currentLanguage = (configLanguage || 'en-GB') as TranslationKey;
   const t = translations[currentLanguage];
 
   const translate = (key: string, variables?: Record<string, string>): string => {

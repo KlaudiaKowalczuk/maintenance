@@ -1,0 +1,298 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-gradient);
+  padding: 20px;
+  font-family: var(--body-font-family);
+}
+
+.maintenanceCard {
+  border-radius: var(--card-border-radius);
+  border: var(--card-border);
+  background: var(--card-background);
+  box-shadow: var(--card-shadow);
+  width: 672px;
+  height: auto;
+  min-height: 400px;
+  flex-shrink: 0;
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.iconHeader {
+  border-radius: 33554400px;
+  background: linear-gradient(90deg, #4318D1 100%, #6366F1 0%);
+  padding: var(--icon-padding);
+  margin-bottom: 19px;
+  box-shadow: var(--icon-shadow);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoContainer {
+  margin-bottom: 19px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoImage {
+  width: 70px;
+  height: 70px;
+  width: 100%;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.iconHeader svg {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  fill: var(--icon-color);
+}
+
+.messageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.messageTitle {
+  margin-bottom: 15px;
+}
+
+.messageSection {
+  color: var(--heading2-color);
+  text-align: center;
+  font-size: var(--heading2-font-size);
+  font-style: normal;
+  font-weight: var(--heading2-font-weight);
+  line-height: var(--heading2-line-height);
+  margin-bottom: 22px;
+}
+
+.subtitle {
+  color: var(--subtitle-color);
+  text-align: center;
+  font-size: var(--subtitle-font-size);
+  font-style: normal;
+  font-weight: var(--subtitle-font-weight);
+  line-height: var(--subtitle-line-height);
+  max-width: 547px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.returnBox {
+  background: var(--return-box-background);
+  border-radius: var(--return-box-border-radius);
+  padding: var(--return-box-padding);
+  margin-bottom: 21px;
+  box-shadow: var(--return-box-shadow);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.returnTitle {
+  color: var(--heading3-color);
+  text-align: center;
+  font-size: var(--heading3-font-size);
+  font-style: normal;
+  font-weight: var(--heading3-font-weight);
+  line-height: var(--heading3-line-height);
+  margin: 0 0 8px 0;
+}
+
+.returnDate {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: var(--body-font-size);
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  margin: 0;
+}
+
+.supportSection {
+  max-width: 606px;
+  width: 100%;
+  padding: var(--support-padding);
+  flex-shrink: 0;
+  border-top: 1px solid var(--support-border-color);
+  border-bottom: 1px solid var(--support-border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.helpTitle {
+  margin-bottom: 30px;
+  font-size: var(--heading3-font-size);
+  font-weight: var(--heading3-font-weight);
+  color: var(--heading3-color);
+  margin-top: 0;
+  text-align: center;
+}
+
+.supportCard {
+  background: var(--button-bg-color);
+  color: var(--button-text-color);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 16px 0 rgba(36, 40, 55, 0.07);
+  transition: all 0.13s ease;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  border: var(--button-border-width) solid var(--button-border-color);
+}
+
+.supportCard:hover,
+.supportCard:focus {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.supportIcon {
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phoneIcon,
+.emailIcon {
+  stroke: var(--button-text-color);
+}
+
+.supportLabel {
+  margin: 0;
+  text-align: center;
+  color: var(--button-text-color);
+  font-size: var(--button-font-size);
+  font-style: normal;
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
+}
+
+.supportValue {
+  font-size: 14px;
+  opacity: 0.87;
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0;
+  color: var(--button-text-color);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.footer {
+  color: #64748B;
+  font-size: 15px;
+  margin-top: 35px;
+  margin-bottom: 0;
+}
+
+
+@media (max-width: 768px) {
+  .maintenanceCard {
+    width: 90vw;
+    height: auto;
+    min-height: 600px;
+    padding: 24px 24px 24px 24px;
+  }
+  
+  .logoContainer {
+    margin-bottom: 15px;
+  }
+  
+  .logoImage {
+    width: 50px;
+    height: 50px;
+    width: 100%;
+  }
+  
+  .supportSection {
+    max-width: 90vw;
+  }
+  
+  .subtitle {
+    max-width: 90vw;
+  }
+  
+  .messageSection {
+    font-size: var(--heading3-font-size);
+    font-weight: var(--heading3-font-weight);
+    line-height: var(--heading3-line-height);
+  }
+  
+  .returnTitle {
+    font-size: var(--heading4-font-size);
+    font-weight: var(--heading4-font-weight);
+    line-height: var(--heading4-line-height);
+  }
+  
+  .helpTitle {
+    font-size: var(--heading4-font-size);
+    font-weight: var(--heading4-font-weight);
+  }
+}
+
+@media (max-width: 480px) {
+  .maintenanceCard {
+    width: 95vw;
+    padding: 16px 16px 16px 16px;
+    min-height: 500px;
+  }
+  
+  .logoContainer {
+    margin-bottom: 12px;
+  }
+  
+  .supportSection {
+    max-width: 95vw;
+  }
+  
+  .subtitle {
+    max-width: 95vw;
+  }
+  
+  /* Make titles even smaller on smaller mobile screens */
+  .messageSection {
+    font-size: var(--heading3-font-size);
+    font-weight: var(--heading3-font-weight);
+    line-height: var(--heading3-line-height);
+  }
+  
+  .returnTitle {
+    font-size: var(--heading4-font-size);
+    font-weight: var(--heading4-font-weight);
+    line-height: var(--heading4-line-height);
+  }
+  
+  .helpTitle {
+    font-size: var(--heading4-font-size);
+    font-weight: var(--heading4-font-weight);
+  }
+}

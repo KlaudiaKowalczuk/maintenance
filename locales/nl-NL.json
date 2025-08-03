@@ -1,0 +1,21 @@
+{
+  "maintenance": {
+    "title": "We zijn binnenkort weer online!",
+    "subtitle": "We voeren momenteel onderhoud uit aan {customer} services om uw online ervaring te verbeteren. We zijn binnenkort weer online.",
+    "expectedReturnTitle": "Verwachte terugkeertijd",
+    "supportTitle": "Hulp nodig? We zijn er nog steeds voor je",
+    "phoneLabel": "Bel ons",
+    "emailLabel": "E-mail ons",
+    "footerMessage": "Bedankt voor uw geduld. Wij verontschuldigen ons voor het ongemak en waarderen uw begrip terwijl wij werken aan het verbeteren van onze diensten.",
+    "pageTitle": "{customer} - Onderhoud",
+    "pageDescription": "Onderhoudspagina voor {customer}",
+    "companyLogo": "Bedrijfslogo",
+    "phoneAriaLabel": "{label}: {value}",
+    "emailAriaLabel": "{label}: {value}"
+  },
+  "errors": {
+    "customerNotFound": "Klant niet gevonden",
+    "customerNotFoundDescription": "Klantconfiguratie niet gevonden",
+    "customerNotFoundMessage": "De configuratie van klant {customerName} is niet gevonden"
+  }
+}

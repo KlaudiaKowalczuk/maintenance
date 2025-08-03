@@ -1,18 +1,15 @@
 import { AppConfig } from './appConfig';
-
 interface ThemeColors {
   [key: string]: {
     base?: { main?: string };
     invert?: { main?: string };
   };
 }
-
 interface ButtonVariant {
   buttonColor?: string;
   borderRadius?: string;
   fontWeight?: string;
 }
-
 interface ButtonTheme {
   buttonVariants: { [key: string]: ButtonVariant };
 }
@@ -72,7 +69,7 @@ export async function getTheme(customerConfig: AppConfig): Promise<boolean | und
     // You can also query, sort, and target this content.
     // See full docs on our content API: https://www.builder.io/c/docs/query-api
     const response = await fetch(
-      `https://cdn.builder.io/api/v3/content/theme?apiKey=${builderApiKey}&userAttributes.customer=${customerName}`
+      `https://cdn.builder.io/api/v3/content/theme?apiKey=${builderApiKey}&userAttributes.customer=${customerName}&enrich=true&includeRefs=true`,
     );
     
     const themeJson: ThemeResponse = await response.json();
@@ -81,8 +78,6 @@ export async function getTheme(customerConfig: AppConfig): Promise<boolean | und
     if (!theme || Object.keys(theme).length === 0) {
       return;
     }
-
-    console.log('Theme loaded successfully:', theme);
 
     const loginStyles = theme.login;
     const themeColors = theme.colors;
@@ -155,7 +150,7 @@ export async function getTheme(customerConfig: AppConfig): Promise<boolean | und
     if (theme.typography?.bodyFontFamily) {
       root.style.setProperty(
         '--body-font-family', 
-        `${theme.typography.bodyFontFamily}, blinkmacsystemfont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif`
+        `${theme.typography.bodyFontFamily}`
       );
     }
     
@@ -176,7 +171,6 @@ export async function getTheme(customerConfig: AppConfig): Promise<boolean | und
         
         fontPromises.push(fontWoff.load(), fontWoff2.load());
         
-        // Add fonts to document
         document.fonts.add(fontWoff);
         document.fonts.add(fontWoff2);
       }
@@ -197,16 +191,6 @@ export async function getTheme(customerConfig: AppConfig): Promise<boolean | und
           root.style.setProperty(`--color-${colorKey}-invert`, colorData.invert.main);
         }
       });
-    }
-
-    // Text input styles
-    if (theme.textInput) {
-      if (theme.textInput.color) {
-        root.style.setProperty('--text-primary', theme.textInput.color);
-      }
-      if (theme.textInput.labelColor) {
-        root.style.setProperty('--text-secondary', theme.textInput.labelColor);
-      }
     }
 
     return true;

@@ -28,7 +28,7 @@
 
 .iconHeader {
   border-radius: 33554400px;
-  background: linear-gradient(90deg, #4318D1 100%, #6366F1 0%);
+  background: var(--button-bg-color);
   padding: var(--icon-padding);
   margin-bottom: 19px;
   box-shadow: var(--icon-shadow);

@@ -133,7 +133,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // Tylko build-time znani klienci!
+    fallback: false,
   };
 };
 

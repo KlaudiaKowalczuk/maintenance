@@ -1,7 +1,7 @@
 export interface AppConfig {
   maintenanceDateEnd: string;
   customer: string;
-  configs: {
+  config: {
     gtmKey: boolean;
     builderApiKey: string;
     language?: 'en-GB' | 'nl-NL';
@@ -18,7 +18,7 @@ export function setGlobalAppConfig(config: AppConfig | null) {
   currentAppConfig = config;
 }
 
-export function useMaintenanceDateEnd(): string {
+export function getMaintenanceDateEnd(): string {
   return process.env.NEXT_PUBLIC_MAINTENANCE_DATE_END || '';
 }
 

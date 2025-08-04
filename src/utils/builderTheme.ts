@@ -80,7 +80,7 @@ export async function getTheme(
     customerConfig: AppConfig
 ): Promise<boolean | undefined> {
     const root = document.documentElement;
-    const builderApiKey = customerConfig.configs.builderApiKey;
+    const builderApiKey = customerConfig.config.builderApiKey;
     const customerName = customerConfig.customer.toLowerCase();
 
     try {

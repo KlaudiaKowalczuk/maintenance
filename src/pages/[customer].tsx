@@ -20,15 +20,15 @@ interface MaintenancePageProps {
   customerName: string;
 }
 
-function formatCustomerName(str: string): string {
-  if (str.toLowerCase() === 'maverickandwolf') {
-    return 'Maverick & Wolf';
-  }
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 export default function MaintenancePage({ customerConfig, customerName }: MaintenancePageProps) {
   
+  const formatCustomerName = (str: string): string => {
+    if (str.toLowerCase() === 'maverickandwolf') {
+      return 'Maverick & Wolf';
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   useEffect(() => {
     setGlobalAppConfig(customerConfig);
 
@@ -37,21 +37,9 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
         console.warn('Failed to load theme:', error);
       });
     }
-
-    if (customerConfig?.configs.gtmKey) {
-      const gtmScript = document.createElement('script');
-      gtmScript.innerHTML = `
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${customerConfig.configs.gtmKey}');
-      `;
-      document.head.appendChild(gtmScript);
-    }
   }, [customerConfig]);
 
-  const { t } = useTranslation(customerConfig?.configs.language);
+  const { t } = useTranslation(customerConfig?.config?.language);
 
   if (!customerConfig) {
     return (
@@ -72,47 +60,58 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
     );
   }
 
-  const isSupportAvailable = !!(customerConfig.configs.phoneNumber || customerConfig.configs.email);
+  const isSupportAvailable = !!(customerConfig?.config?.phoneNumber || customerConfig?.config?.email);
 
   return (
     <>
-      <DynamicFavicon faviconUrl={customerConfig?.configs?.faviconUrl} />
+      <DynamicFavicon faviconUrl={customerConfig?.config?.faviconUrl} />
       <Head>
         <title>{t('MAINTENANCE.PAGE_TITLE', { customer: formatCustomerName(customerConfig.customer) })}</title>
-        <meta name="description" content={t('MAINTENANCE.PAGE_DESCRIPTION', { customer: customerConfig.customer })} />
+        <meta name="description" content={t('MAINTENANCE.PAGE_DESCRIPTION', { customer: formatCustomerName(customerConfig.customer) })} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.lang = '${customerConfig.configs.language || 'en-GB'}';`,
-          }}
-        />
-        {customerConfig.configs.gtmKey && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${customerConfig.configs.gtmKey}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
+        {customerConfig.config.gtmKey && (
+          <>
+            {/* eslint-disable-next-line @next/next/next-script-for-ga */}
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','${customerConfig.config.gtmKey}');
+                `,
+              }}
             />
-          </noscript>
+          </>
         )}
       </Head>
+      {customerConfig.config.gtmKey && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${customerConfig.config.gtmKey}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+      )}
       <div className={styles.container}>
         <MaintenanceContainer>
-          <IconHeader logoUrl={customerConfig?.configs?.logoUrl} />
+          <IconHeader logoUrl={customerConfig?.config?.logoUrl} />
           <MaintenanceMessage
             title={t('MAINTENANCE.TITLE')}
-            subtitle={t('MAINTENANCE.MESSAGE', { customer: customerConfig.customer })}
+            subtitle={t('MAINTENANCE.MESSAGE')}
           />
           <ReturnTime
             title={t('MAINTENANCE.RETURN_TIME')}
-            language={customerConfig?.configs.language}
+            language={customerConfig?.config.language}
           />
           {isSupportAvailable && (
             <SupportSection
-              phoneNumber={customerConfig.configs.phoneNumber}
-              email={customerConfig.configs.email}
-              language={customerConfig?.configs.language}
+              phoneNumber={customerConfig?.config?.phoneNumber}
+              email={customerConfig?.config?.email}
+              language={customerConfig?.config?.language}
             />
             )
           }

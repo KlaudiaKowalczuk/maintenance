@@ -1,4 +1,4 @@
-import { useAppConfig, useMaintenanceDateEnd } from '@/utils/appConfig';
+import { getMaintenanceDateEnd, useAppConfig } from '@/utils/appConfig';
 import { useEffect, useState } from 'react';
 import styles from './maintenance-components.module.css';
 
@@ -9,7 +9,7 @@ interface ReturnTimeProps {
 
 export const ReturnTime: React.FC<ReturnTimeProps> = ({ title, language }) => {
   const appConfig = useAppConfig();
-  const returnDateString = useMaintenanceDateEnd();
+  const returnDateString = getMaintenanceDateEnd();
   const [formattedDate, setFormattedDate] = useState<string>('');
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const ReturnTime: React.FC<ReturnTimeProps> = ({ title, language }) => {
         timeZoneName: 'short'
       };
 
-      const locale = language || appConfig?.configs.language || 'en-GB';
+      const locale = language || appConfig?.config.language || 'en-GB';
       const formatted = date.toLocaleDateString(locale, options);
       setFormattedDate(formatted);
       

@@ -57,15 +57,15 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
     return (
       <>
         <Head>
-          <title>{t('errors.customerNotFound')}</title>
-          <meta name="description" content={t('errors.customerNotFoundDescription')} />
+          <title>{t('ERRORS.CUSTOMER_NOT_FOUND')}</title>
+          <meta name="description" content={t('ERRORS.CUSTOMER_NOT_FOUND_DESCRIPTION')} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.container}>
           <MaintenanceContainer>
-            <h1>{t('errors.customerNotFound')}</h1>
-            <p>{t('errors.customerNotFoundMessage', { customerName })}</p>
+            <h1>{t('ERRORS.CUSTOMER_NOT_FOUND')}</h1>
+            <p>{t('ERRORS.CUSTOMER_NOT_FOUND_MESSAGE', { customerName })}</p>
           </MaintenanceContainer>
         </div>
       </>
@@ -78,8 +78,8 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
     <>
       <DynamicFavicon faviconUrl={customerConfig?.configs?.faviconUrl} />
       <Head>
-        <title>{t('maintenance.pageTitle', { customer: formatCustomerName(customerConfig.customer) })}</title>
-        <meta name="description" content={t('maintenance.pageDescription', { customer: customerConfig.customer })} />
+        <title>{t('MAINTENANCE.PAGE_TITLE', { customer: formatCustomerName(customerConfig.customer) })}</title>
+        <meta name="description" content={t('MAINTENANCE.PAGE_DESCRIPTION', { customer: customerConfig.customer })} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           dangerouslySetInnerHTML={{
@@ -101,12 +101,12 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
         <MaintenanceContainer>
           <IconHeader logoUrl={customerConfig?.configs?.logoUrl} />
           <MaintenanceMessage
-            title={t('maintenance.title')}
-            subtitle={t('maintenance.subtitle', { customer: customerConfig.customer })}
+            title={t('MAINTENANCE.TITLE')}
+            subtitle={t('MAINTENANCE.MESSAGE', { customer: customerConfig.customer })}
           />
-          <ReturnTime 
-            title={t('maintenance.expectedReturnTitle')}
-            language={customerConfig?.configs.language} 
+          <ReturnTime
+            title={t('MAINTENANCE.RETURN_TIME')}
+            language={customerConfig?.configs.language}
           />
           {isSupportAvailable && (
             <SupportSection
@@ -117,7 +117,7 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
             )
           }
           <MaintenanceFooter 
-            message={t('maintenance.footerMessage')}
+            message={t('MAINTENANCE.FOOTER_MESSAGE')}
           />
         </MaintenanceContainer>
       </div>

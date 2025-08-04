@@ -57,14 +57,14 @@ export const SupportSection: React.FC<SupportSectionProps> = ({
 
   return (
     <section className={styles.supportSection} aria-labelledby="support-title">
-      <h2 id="support-title" className={`${styles.helpTitle} heading2`}>{t('maintenance.supportTitle')}</h2>
+      <h2 id="support-title" className={`${styles.helpTitle} heading2`}>{t('MAINTENANCE.SUPPORT_TITLE')}</h2>
       {phoneNumber && (
         <SupportButton
           href={`tel:${phoneNumber.replace(/\D/g, '')}`}
           icon={<PhoneIcon />}
-          label={t('maintenance.phoneLabel')}
+          label={t('MAINTENANCE.PHONE_LABEL')}
           value={`${phoneNumber} (Available 24/7)`}
-          ariaLabelKey="maintenance.phoneAriaLabel"
+          ariaLabelKey="MAINTENANCE.PHONE_ARIA_LABEL"
           language={language}
         />
       )}
@@ -73,9 +73,9 @@ export const SupportSection: React.FC<SupportSectionProps> = ({
         <SupportButton
           href={`mailto:${email}`}
           icon={<EmailIcon />}
-          label={t('maintenance.emailLabel')}
+          label={t('MAINTENANCE.EMAIL_LABEL')}
           value={email}
-          ariaLabelKey="maintenance.emailAriaLabel"
+          ariaLabelKey="MAINTENANCE.EMAIL_ARIA_LABEL"
           language={language}
         />
       )}

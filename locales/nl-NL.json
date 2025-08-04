@@ -1,20 +1,20 @@
 {
-  "maintenance": {
-    "title": "We zijn binnenkort weer online!",
-    "subtitle": "We zijn momenteel bezig met onderhoud om onze site en online ervaring te verbeteren. We zijn binnenkort weer online.",
-    "expectedReturnTitle": "Verwachte terugkeertijd",
-    "supportTitle": "Hulp nodig? We zijn er nog steeds voor je",
-    "phoneLabel": "Bel ons",
-    "emailLabel": "E-mail ons",
-    "footerMessage": "Bedankt voor uw geduld. Wij verontschuldigen ons voor het ongemak en waarderen uw begrip terwijl wij werken aan het verbeteren van onze diensten.",
-    "pageTitle": "{customer} - Onderhoud",
-    "pageDescription": "Onderhoudspagina voor {customer}",
-    "phoneAriaLabel": "{label}: {value}",
-    "emailAriaLabel": "{label}: {value}"
+  "MAINTENANCE": {
+    "TITLE": "We zijn binnenkort weer online!",
+    "MESSAGE": "We zijn momenteel bezig met onderhoud om onze site en online ervaring te verbeteren. We zijn binnenkort weer online.",
+    "RETURN_TIME": "Verwachte terugkeertijd",
+    "SUPPORT_TITLE": "Hulp nodig? We zijn er nog steeds voor je",
+    "PHONE_LABEL": "Bel ons",
+    "EMAIL_LABEL": "E-mail ons",
+    "FOOTER_MESSAGE": "Bedankt voor uw geduld. Wij verontschuldigen ons voor het ongemak en waarderen uw begrip terwijl wij werken aan het verbeteren van onze diensten.",
+    "PAGE_TITLE": "{customer} - Onderhoud",
+    "PAGE_DESCRIPTION": "Onderhoudspagina voor {customer}",
+    "PHONE_ARIA_LABEL": "{label}: {value}",
+    "EMAIL_ARIA_LABEL": "{label}: {value}"
   },
-  "errors": {
-    "customerNotFound": "Klant niet gevonden",
-    "customerNotFoundDescription": "Klantconfiguratie niet gevonden",
-    "customerNotFoundMessage": "De configuratie van klant {customerName} is niet gevonden"
+  "ERRORS": {
+    "CUSTOMER_NOT_FOUND": "Klant niet gevonden",
+    "CUSTOMER_NOT_FOUND_DESCRIPTION": "Klantconfiguratie niet gevonden",
+    "CUSTOMER_NOT_FOUND_MESSAGE": "De configuratie van klant {customerName} is niet gevonden"
   }
 }

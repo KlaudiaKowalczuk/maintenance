@@ -125,21 +125,6 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { customer } = context.params!;
-//   const customerName = customer as string;
-
-//   // Get the specific customer configuration using our utility function
-//   const customerConfig = getCustomerConfig(customerName);
-
-//   return {
-//     props: {
-//       customerConfig,
-//       customerName,
-//     },
-//   };
-// };
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const configs = getCustomerConfigs();
   const paths = configs.map((config) => ({

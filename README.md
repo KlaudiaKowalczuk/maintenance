@@ -24,7 +24,7 @@ The application supports the following URL patterns:
 Customer configurations are stored in the `.env.local` file:
 
 ```env
-CUSTOMER_CONFIGS=[{"customer":"ocuco","configs":{"gtmKey":true,"builderApiKey":"AIzaSyD-ocuco","locale":"en-GB","phoneNumber":"1-800-555-0123","email":"support@ocuco.com"}},{"customer":"eyewish","configs":{"gtmKey":false,"builderApiKey":"AIzaSyD-eyewish","locale":"nl-NL","phoneNumber":"020-123-4567","email":"support@eyewish.nl"}},{"customer":"abc","configs":{"gtmKey":true,"builderApiKey":"AIzaSyD-abc","locale":"en-GB","email":"help@abc.com"}},{"customer":"xyz","configs":{"gtmKey":false,"builderApiKey":"AIzaSyD-xyz","locale":"nl-NL","phoneNumber":"030-987-6543"}}]
+CUSTOMER_CONFIGS=[{"customer":"ocuco","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-ocuco","locale":"en-GB","phoneNumber":"1-800-555-0123","email":"support@ocuco.com"}},{"customer":"eyewish","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-eyewish","locale":"nl-NL","phoneNumber":"020-123-4567","email":"support@eyewish.nl"}},{"customer":"abc","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-abc","locale":"en-GB","email":"help@abc.com"}},{"customer":"xyz","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-xyz","locale":"nl-NL","phoneNumber":"030-987-6543"}}]
 ```
 
 ### Configuration Schema
@@ -32,7 +32,7 @@ CUSTOMER_CONFIGS=[{"customer":"ocuco","configs":{"gtmKey":true,"builderApiKey":"
 Each customer configuration includes:
 
 - `customer`: Customer identifier (string)
-- `configs.gtmKey`: Whether to load Google Tag Manager (boolean)
+- `configs.gtmKey`: HTML Key to load Google Tag Manager (string)
 - `configs.builderApiKey`: API key for builder services (string)
 - `configs.locale`: Language locale for the customer ('en-GB' | 'nl-NL') - optional, defaults to 'en-GB'
 - `configs.phoneNumber`: Customer support phone number (string) - optional
@@ -67,12 +67,11 @@ src/
 ├── pages/
 │   ├── index.tsx           # Customer selection homepage
 │   ├── [customer].tsx      # Dynamic customer maintenance page
-│   └── api/
+│
 ├── styles/
 │   ├── maintenance-components.module.css  # Maintenance page styles
-│   └── Home.module.css
 ├── utils/
-│   └── customerConfig.ts   # Customer configuration utilities
+│   └── appConfig.ts   # Customer configuration utilities
 ```
 
 ## Adding New Customers
@@ -85,13 +84,6 @@ To add a new customer:
 
 ## Deployment
 
-This application can be deployed to any Next.js-compatible hosting platform:
-
-- Vercel
-- Netlify
-- AWS Amplify
-- Self-hosted with Docker
-
 Make sure to set the `CUSTOMER_CONFIGS` environment variable in your deployment environment.
 
 ## Development
@@ -100,8 +92,6 @@ Make sure to set the `CUSTOMER_CONFIGS` environment variable in your deployment 
 - **Styling**: CSS Modules
 - **Fonts**: Geist Sans and Geist Mono
 - **Routing**: Next.js dynamic routing with `[customer].tsx`
-
-## API Reference
 
 ### Utility Functions
 

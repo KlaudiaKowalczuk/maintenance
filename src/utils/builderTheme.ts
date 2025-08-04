@@ -7,7 +7,6 @@ interface ThemeColors {
     };
 }
 
-
 interface ButtonVariant {
     buttonColor?: string;
     borderRadius?: string;
@@ -17,7 +16,6 @@ interface ButtonVariant {
 interface ButtonTheme {
     buttonVariants: { [key: string]: ButtonVariant };
 }
-
 
 interface TypographyHeading {
     lineHeight?: string;
@@ -34,7 +32,6 @@ interface Typography {
         heading4?: TypographyHeading;
     };
 }
-
 
 interface TextInput {
     height?: string;
@@ -53,7 +50,6 @@ interface LoginStyles {
     buttonStyle?: string;
 }
 
-
 interface ThemeData {
     login?: LoginStyles;
     colors?: ThemeColors;
@@ -66,7 +62,6 @@ interface ThemeData {
 interface ThemeResponse {
     results?: Array<{ data?: ThemeData }>;
 }
-
 
 const loadedFonts = new Set<string>();
 
@@ -81,14 +76,12 @@ function applyCSSVariables(
     });
 }
 
-
 export async function getTheme(
     customerConfig: AppConfig
 ): Promise<boolean | undefined> {
     const root = document.documentElement;
     const builderApiKey = customerConfig.configs.builderApiKey;
     const customerName = customerConfig.customer.toLowerCase();
-
 
     try {
         const response = await fetch(
@@ -139,7 +132,6 @@ export async function getTheme(
             cssVariables["--button-font-weight"] = buttonStyle.fontWeight;
         }
 
-
         // Heading styles
         const headings = theme.typography?.headings;
         if (headings) {
@@ -161,7 +153,6 @@ export async function getTheme(
                 }
             });
         }
-
 
         // Font styles
         if (theme.typography?.bodyFontFamily) {
@@ -228,7 +219,6 @@ export async function getTheme(
                 await document.fonts.ready;
             }
         }
-
 
         return true;
     } catch (error) {

@@ -1,4 +1,3 @@
-import { useAppConfig } from '@/utils/appConfig';
 import enGB from '../../locales/en-GB.json';
 import nlNL from '../../locales/nl-NL.json';
 
@@ -9,10 +8,8 @@ const translations = {
 
 type TranslationKey = keyof typeof translations;
 
-export function useTranslation() {
-  const appConfig = useAppConfig();
-  const configLanguage = appConfig?.configs.language;
-  const currentLanguage = (configLanguage || 'en-GB') as TranslationKey;
+export function useTranslation(language?: string) {
+  const currentLanguage = (language || 'en-GB') as TranslationKey;
   const t = translations[currentLanguage];
 
   const translate = (key: string, variables?: Record<string, string>): string => {

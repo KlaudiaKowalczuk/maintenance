@@ -1,5 +1,4 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import { useAppConfig } from '@/utils/appConfig';
 import Image from 'next/image';
 import React from 'react';
 import styles from './maintenance-components.module.css';
@@ -11,10 +10,8 @@ const DefaultLogo: React.FC = () => (
 </svg>
 );
 
-export const IconHeader: React.FC = () => {
-  const customerConfig = useAppConfig();
+export const IconHeader: React.FC<{ logoUrl: string | undefined }> = ({ logoUrl }) => {
   const { t } = useTranslation();
-  const logoUrl = customerConfig?.configs.logoUrl;
 
   return (
     <div 

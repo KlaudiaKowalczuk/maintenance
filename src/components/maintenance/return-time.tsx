@@ -1,10 +1,13 @@
-import { useTranslation } from '@/hooks/useTranslation';
 import { useAppConfig, useMaintenanceDateEnd } from '@/utils/appConfig';
 import { useEffect, useState } from 'react';
 import styles from './maintenance-components.module.css';
 
-export const ReturnTime: React.FC = () => {
-  const { t } = useTranslation();
+interface ReturnTimeProps {
+  title: string;
+  language?: string;
+}
+
+export const ReturnTime: React.FC<ReturnTimeProps> = ({ title, language }) => {
   const appConfig = useAppConfig();
   const returnDateString = useMaintenanceDateEnd();
   const [formattedDate, setFormattedDate] = useState<string>('');
@@ -33,7 +36,7 @@ export const ReturnTime: React.FC = () => {
         timeZoneName: 'short'
       };
 
-      const locale = appConfig?.configs.language || 'en-GB';
+      const locale = language || appConfig?.configs.language || 'en-GB';
       const formatted = date.toLocaleDateString(locale, options);
       setFormattedDate(formatted);
       
@@ -41,11 +44,11 @@ export const ReturnTime: React.FC = () => {
       console.error('Error formatting date:', error);
       setFormattedDate(returnDateString);
     }
-  }, [returnDateString, appConfig]);
+  }, [returnDateString, language, appConfig]);
   
   return (
-    <div className={styles.returnBox} role="region" aria-label={t('maintenance.expectedReturnTitle')}>
-      <div className={`${styles.returnTitle} heading3`}>{t('maintenance.expectedReturnTitle')}</div>
+    <div className={styles.returnBox} role="region" aria-label={title}>
+      <div className={`${styles.returnTitle} heading3`}>{title}</div>
       <div className={`${styles.returnDate} text-muted`}>{formattedDate}</div>
     </div>
   );

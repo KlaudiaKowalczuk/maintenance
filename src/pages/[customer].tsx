@@ -9,9 +9,9 @@ import {
 } from "@/components/maintenance";
 import styles from "@/components/maintenance/maintenance-components.module.css";
 import { useTranslation } from "@/hooks/useTranslation";
-import { AppConfig, getCustomerConfig, setGlobalAppConfig } from "@/utils/appConfig";
+import { AppConfig, getCustomerConfig, getCustomerConfigs, setGlobalAppConfig } from "@/utils/appConfig";
 import { getTheme } from "@/utils/builderTheme";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 
@@ -28,11 +28,10 @@ function formatCustomerName(str: string): string {
 }
 
 export default function MaintenancePage({ customerConfig, customerName }: MaintenancePageProps) {
-  setGlobalAppConfig(customerConfig);
-  
-  const { t } = useTranslation();
   
   useEffect(() => {
+    setGlobalAppConfig(customerConfig);
+
     if (customerConfig) {
       getTheme(customerConfig).catch(error => {
         console.warn('Failed to load theme:', error);
@@ -51,6 +50,8 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
       document.head.appendChild(gtmScript);
     }
   }, [customerConfig]);
+
+  const { t } = useTranslation(customerConfig?.configs.language);
 
   if (!customerConfig) {
     return (
@@ -75,7 +76,7 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
 
   return (
     <>
-      <DynamicFavicon />
+      <DynamicFavicon faviconUrl={customerConfig?.configs?.faviconUrl} />
       <Head>
         <title>{t('maintenance.pageTitle', { customer: formatCustomerName(customerConfig.customer) })}</title>
         <meta name="description" content={t('maintenance.pageDescription', { customer: customerConfig.customer })} />
@@ -98,16 +99,20 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
       </Head>
       <div className={styles.container}>
         <MaintenanceContainer>
-          <IconHeader />
+          <IconHeader logoUrl={customerConfig?.configs?.logoUrl} />
           <MaintenanceMessage
             title={t('maintenance.title')}
             subtitle={t('maintenance.subtitle', { customer: customerConfig.customer })}
           />
-          <ReturnTime />
+          <ReturnTime 
+            title={t('maintenance.expectedReturnTitle')}
+            language={customerConfig?.configs.language} 
+          />
           {isSupportAvailable && (
             <SupportSection
               phoneNumber={customerConfig.configs.phoneNumber}
               email={customerConfig.configs.email}
+              language={customerConfig?.configs.language}
             />
             )
           }
@@ -120,11 +125,35 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { customer } = context.params!;
-  const customerName = customer as string;
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const { customer } = context.params!;
+//   const customerName = customer as string;
 
-  // Get the specific customer configuration using our utility function
+//   // Get the specific customer configuration using our utility function
+//   const customerConfig = getCustomerConfig(customerName);
+
+//   return {
+//     props: {
+//       customerConfig,
+//       customerName,
+//     },
+//   };
+// };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const configs = getCustomerConfigs();
+  const paths = configs.map((config) => ({
+    params: { customer: config.customer },
+  }));
+
+  return {
+    paths,
+    fallback: false, // Tylko build-time znani klienci!
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const customerName = context.params?.customer as string;
   const customerConfig = getCustomerConfig(customerName);
 
   return {

@@ -1,4 +1,3 @@
-import { useTranslation } from '@/hooks/useTranslation';
 import React from 'react';
 import styles from './maintenance-components.module.css';
 
@@ -11,14 +10,14 @@ export const MaintenanceMessage: React.FC<MaintenanceMessageProps> = ({
   title,
   subtitle
 }) => {
-  const { t } = useTranslation();
+  
   return (
     <section className={styles.messageSection}>
       <h1 className={styles.messageTitle} id="main-title">
-        {title || t('maintenance.title')}
+        {title}
       </h1>
       <p className={`${styles.subtitle} subtitle`}>
-        {subtitle || t('maintenance.subtitle')}
+        {subtitle}
       </p>
     </section>
   );

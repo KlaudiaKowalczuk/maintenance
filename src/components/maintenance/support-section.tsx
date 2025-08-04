@@ -8,10 +8,11 @@ interface SupportButtonProps {
   label: string;
   value: string;
   ariaLabelKey: string;
+  language?: string;
 }
 
-const SupportButton: React.FC<SupportButtonProps> = ({ href, icon, label, value, ariaLabelKey }) => {
-  const { t } = useTranslation();
+const SupportButton: React.FC<SupportButtonProps> = ({ href, icon, label, value, ariaLabelKey, language }) => {
+  const { t } = useTranslation(language);
   
   return (
     <a 
@@ -33,13 +34,15 @@ const SupportButton: React.FC<SupportButtonProps> = ({ href, icon, label, value,
 interface SupportSectionProps {
   phoneNumber?: string;
   email?: string;
+  language?: string;
 }
 
 export const SupportSection: React.FC<SupportSectionProps> = ({ 
   phoneNumber,
-  email
+  email,
+  language
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(language);
   const PhoneIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" className={styles.phoneIcon}>
       <path d="M2.85693 4.94448C2.85693 4.5235 3.02416 4.11977 3.32185 3.82209C3.61952 3.52441 4.02326 3.35718 4.44424 3.35718H7.04741C7.21391 3.3573 7.37616 3.4098 7.51118 3.50722C7.64621 3.60464 7.74717 3.74206 7.79979 3.90003L8.98868 7.46591C9.04891 7.64713 9.04179 7.844 8.96861 8.02039C8.89543 8.19678 8.76111 8.34087 8.59027 8.42623L6.799 9.32305C7.67703 11.2663 9.23349 12.8228 11.1767 13.7008L12.0736 11.9096C12.1589 11.7387 12.303 11.6044 12.4794 11.5312C12.6558 11.458 12.8527 11.4509 13.0339 11.5112L16.5998 12.7C16.7579 12.7527 16.8954 12.8537 16.9928 12.989C17.0903 13.1241 17.1426 13.2866 17.1426 13.4532V16.0556C17.1426 16.4766 16.9754 16.8803 16.6777 17.1779C16.3801 17.4757 15.9764 17.6429 15.5553 17.6429H14.7617C8.1871 17.6429 2.85693 12.3127 2.85693 5.73813V4.94448Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -62,6 +65,7 @@ export const SupportSection: React.FC<SupportSectionProps> = ({
           label={t('maintenance.phoneLabel')}
           value={`${phoneNumber} (Available 24/7)`}
           ariaLabelKey="maintenance.phoneAriaLabel"
+          language={language}
         />
       )}
 
@@ -72,6 +76,7 @@ export const SupportSection: React.FC<SupportSectionProps> = ({
           label={t('maintenance.emailLabel')}
           value={email}
           ariaLabelKey="maintenance.emailAriaLabel"
+          language={language}
         />
       )}
     </section>

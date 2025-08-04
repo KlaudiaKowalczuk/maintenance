@@ -72,7 +72,7 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
     );
   }
 
-  const isSupportAvailable = customerConfig.configs.phoneNumber || customerConfig.configs.email;
+  const isSupportAvailable = !!(customerConfig.configs.phoneNumber || customerConfig.configs.email);
 
   return (
     <>

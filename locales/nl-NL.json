@@ -9,7 +9,6 @@
     "footerMessage": "Bedankt voor uw geduld. Wij verontschuldigen ons voor het ongemak en waarderen uw begrip terwijl wij werken aan het verbeteren van onze diensten.",
     "pageTitle": "{customer} - Onderhoud",
     "pageDescription": "Onderhoudspagina voor {customer}",
-    "companyLogo": "Bedrijfslogo",
     "phoneAriaLabel": "{label}: {value}",
     "emailAriaLabel": "{label}: {value}"
   },

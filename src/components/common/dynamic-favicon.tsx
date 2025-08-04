@@ -1,16 +1,10 @@
-import { useAppConfig } from '@/utils/appConfig';
 import Head from 'next/head';
 
 interface DynamicFaviconProps {
-  defaultFavicon?: string;
+  faviconUrl?: string;
 }
 
-export const DynamicFavicon: React.FC<DynamicFaviconProps> = ({ 
-  defaultFavicon = "/favicon.ico" 
-}) => {
-  const customerConfig = useAppConfig();
-  const faviconUrl = customerConfig?.configs.faviconUrl || defaultFavicon;
-
+export const DynamicFavicon: React.FC<DynamicFaviconProps> = ({ faviconUrl = "/favicon.ico" }) => {
   return (
     <Head>
       <link rel="icon" href={faviconUrl} />

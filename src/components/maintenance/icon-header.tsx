@@ -1,4 +1,3 @@
-import { useTranslation } from '@/hooks/useTranslation';
 import Image from 'next/image';
 import React from 'react';
 import styles from './maintenance-components.module.css';
@@ -11,7 +10,6 @@ const DefaultLogo: React.FC = () => (
 );
 
 export const IconHeader: React.FC<{ logoUrl: string | undefined }> = ({ logoUrl }) => {
-  const { t } = useTranslation();
 
   return (
     <div 
@@ -21,7 +19,7 @@ export const IconHeader: React.FC<{ logoUrl: string | undefined }> = ({ logoUrl 
       {logoUrl ? (
         <Image 
           src={logoUrl} 
-          alt={t('maintenance.companyLogo')}
+          alt={"logo"}
           width={70}
           height={70}
           className={styles.logoImage}

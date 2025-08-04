@@ -9,7 +9,6 @@
     "footerMessage": "Thank you for your patience. We apologize for any inconvenience and appreciate your understanding as we work to improve our services.",
     "pageTitle": "{customer} - Maintenance",
     "pageDescription": "Maintenance page for {customer}",
-    "companyLogo": "Company Logo",
     "phoneAriaLabel": "{label}: {value}",
     "emailAriaLabel": "{label}: {value}"
   },

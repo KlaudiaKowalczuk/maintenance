@@ -1,7 +1,6 @@
 import { DynamicFavicon } from "@/components/common/dynamic-favicon";
 import {
   IconHeader,
-  MaintenanceContainer,
   MaintenanceFooter,
   MaintenanceMessage,
   ReturnTime,
@@ -51,10 +50,10 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className={styles.container}>
-          <MaintenanceContainer>
+          <section className={styles.maintenanceCard} role="main" aria-labelledby="main-title">
             <h1>{t('ERRORS.CUSTOMER_NOT_FOUND')}</h1>
             <p>{t('ERRORS.CUSTOMER_NOT_FOUND_MESSAGE', { customerName })}</p>
-          </MaintenanceContainer>
+          </section>
         </div>
       </>
     );
@@ -97,7 +96,7 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
         </noscript>
       )}
       <div className={styles.container}>
-        <MaintenanceContainer>
+        <section className={styles.maintenanceCard} role="main" aria-labelledby="main-title">
           <IconHeader logoUrl={customerConfig?.config?.logoUrl} />
           <MaintenanceMessage
             title={t('MAINTENANCE.TITLE')}
@@ -113,12 +112,11 @@ export default function MaintenancePage({ customerConfig, customerName }: Mainte
               email={customerConfig?.config?.email}
               language={customerConfig?.config?.language}
             />
-            )
-          }
+          )}
           <MaintenanceFooter 
             message={t('MAINTENANCE.FOOTER_MESSAGE')}
           />
-        </MaintenanceContainer>
+          </section>
       </div>
     </>
   );

@@ -24,7 +24,8 @@ The application supports the following URL patterns:
 Customer configurations are stored in the `.env.local` file:
 
 ```env
-CUSTOMER_CONFIGS=[{"customer":"ocuco","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-ocuco","locale":"en-GB","phoneNumber":"1-800-555-0123","email":"support@ocuco.com"}},{"customer":"eyewish","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-eyewish","locale":"nl-NL","phoneNumber":"020-123-4567","email":"support@eyewish.nl"}},{"customer":"abc","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-abc","locale":"en-GB","email":"help@abc.com"}},{"customer":"xyz","configs":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-xyz","locale":"nl-NL","phoneNumber":"030-987-6543"}}]
+NEXT_PUBLIC_MAINTENANCE_DATE_END=2024-12-20T14:00:00Z
+CUSTOMER_CONFIGS=[{"customer":"ocuco","config":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-ocuco","language":"en-GB","phone":"1-800-555-0123","email":"support@ocuco.com","logoUrl":"","faviconUrl":""}},{"customer":"eyewish","config":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-eyewish","language":"nl-NL","phone":"020-123-4567","email":"support@eyewish.nl","logoUrl":"","faviconUrl":""}},{"customer":"abc","config":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-abc","language":"en-GB","email":"help@abc.com","phone":"","logoUrl":"","faviconUrl":""}},{"customer":"xyz","config":{"gtmKey":"GTM-XXXX","builderApiKey":"AIzaSyD-xyz","language":"nl-NL","phone":"030-987-6543","email":"","logoUrl":"","faviconUrl":""}}]
 ```
 
 ### Configuration Schema
@@ -32,11 +33,17 @@ CUSTOMER_CONFIGS=[{"customer":"ocuco","configs":{"gtmKey":"GTM-XXXX","builderApi
 Each customer configuration includes:
 
 - `customer`: Customer identifier (string)
-- `configs.gtmKey`: HTML Key to load Google Tag Manager (string)
-- `configs.builderApiKey`: API key for builder services (string)
-- `configs.locale`: Language locale for the customer ('en-GB' | 'nl-NL') - optional, defaults to 'en-GB'
-- `configs.phoneNumber`: Customer support phone number (string) - optional
-- `configs.email`: Customer support email address (string) - optional
+- `config.gtmKey`: HTML Key to load Google Tag Manager (string)
+- `config.builderApiKey`: API key for builder services (string)
+- `config.language`: Language locale for the customer ('en-GB' | 'nl-NL') - optional, defaults to 'en-GB'
+- `config.phone`: Customer support phone number (string) - optional
+- `config.email`: Customer support email address (string) - optional
+- `config.logoUrl`: URL for customer logo (string) - optional
+- `config.faviconUrl`: URL for customer favicon (string) - optional
+
+**Global Settings:**
+
+- `NEXT_PUBLIC_MAINTENANCE_DATE_END`: ISO date string for when maintenance ends
 
 **Note**: All text content (titles, messages, etc.) is handled through the translation system. Only contact information and technical settings are stored in the customer configuration.
 
@@ -49,7 +56,7 @@ Each customer configuration includes:
    ```
 
 2. **Set up environment variables:**
-   Create a `.env.local` file with your customer configurations (already provided)
+   Create a `.env.local` file with your customer configurations (.env.example provided)
 
 3. **Run the development server:**
 
@@ -65,13 +72,13 @@ Each customer configuration includes:
 ```
 src/
 ├── pages/
-│   ├── index.tsx           # Customer selection homepage
 │   ├── [customer].tsx      # Dynamic customer maintenance page
 │
 ├── styles/
 │   ├── maintenance-components.module.css  # Maintenance page styles
 ├── utils/
-│   └── appConfig.ts   # Customer configuration utilities
+│   ├── appConfig.ts   # Customer configuration utilities
+│   └── builderTheme.ts   # Theme fetching from Builder.io and CSS variable management
 ```
 
 ## Adding New Customers
@@ -96,6 +103,7 @@ Make sure to set the `CUSTOMER_CONFIGS` environment variable in your deployment 
 ### Utility Functions
 
 - `getCustomerConfig(customerName)`: Returns configuration for specific customer
+- `getTheme(builderApiKey)`: Fetches customer theme from Builder.io and applies global CSS variables
 
 ## Internationalization
 

@@ -99,8 +99,6 @@ export async function getTheme(
             return;
         }
 
-        console.log("Theme loaded:", theme);
-
         const loginStyles = theme.login;
         const themeColors = theme.colors;
         const buttonStyle =
